@@ -1,0 +1,27 @@
+@url = http://localhost:8080
+
+GET {{url}}/filmes
+
+###
+POST {{url}}/filmes
+Content-Type: application/json
+
+{
+    "titulo" : "Assaninato no Expresso do Oriente",
+    "idGenero" : 4
+}
+
+###
+PUT {{url}}/filmes/2
+Content-Type: application/json
+
+{
+    "titulo" :  "Assassinato no Expresso do Oriente",
+    "idGenero" : 1
+}
+
+###
+GET {{url}}/filmes/1
+
+###
+DELETE {{url}}/filmes/2

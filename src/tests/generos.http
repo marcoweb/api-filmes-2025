@@ -1,0 +1,25 @@
+@url = http://localhost:8080
+
+GET {{url}}/generos
+
+###
+POST {{url}}/generos
+Content-Type: application/json
+
+{
+    "nome" : "Aventura"
+}
+
+###
+GET {{url}}/generos/1
+
+###
+PUT {{url}}/generos/1
+Content-Type: application/json
+
+{
+    "nome" : "Suspense"
+}
+
+###
+DELETE {{url}}/generos/5

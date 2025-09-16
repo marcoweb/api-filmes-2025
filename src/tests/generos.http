@@ -7,7 +7,7 @@ POST {{url}}/generos
 Content-Type: application/json
 
 {
-    "nome" : "Aventura"
+    "nome" : "Ficção Cientifica"
 }
 
 ###

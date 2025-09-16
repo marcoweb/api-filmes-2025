@@ -7,7 +7,7 @@ POST {{url}}/produtoras
 Content-Type: application/json
 
 {
-    "nome" : "A24"
+    "nome" : "Desilu"
 }
 
 ###

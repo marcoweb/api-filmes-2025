@@ -7,17 +7,19 @@ POST {{url}}/filmes
 Content-Type: application/json
 
 {
-    "titulo" : "A Sociedade do Anel",
-    "idGenero" : 1
+    "titulo" : "Star Trek: The Motion Picture",
+    "idGenero" : 2,
+    "idsProdutoras": [2,3]
 }
 
 ###
-PUT {{url}}/filmes/2
+PUT {{url}}/filmes/1
 Content-Type: application/json
 
 {
-    "titulo" :  "Assassinato no Expresso do Oriente",
-    "idGenero" : 1
+    "titulo" :  "A Sociedade do Anel",
+    "idGenero" : 1,
+    "idsProdutoras" : [2]
 }
 
 ###

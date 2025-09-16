@@ -1,6 +1,9 @@
 package application.filmes;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +12,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import application.generos.Genero;
 import application.generos.GeneroService;
+import application.produtora.Produtora;
+import application.produtora.ProdutoraService;
 
 @Service
 public class FilmeService {
@@ -16,6 +21,8 @@ public class FilmeService {
     private FilmeRepository filmeRepo;
     @Autowired
     private GeneroService generoService;
+    @Autowired
+    private ProdutoraService produtoraService;
 
     public Iterable<FilmeDTO> getAll() {
         return filmeRepo.findAll().stream().map(FilmeDTO::new).toList();
@@ -23,10 +30,13 @@ public class FilmeService {
 
     public FilmeDTO insert(FilmeInsertDTO novoFilme) {
         Genero genero = new Genero(generoService.getOne(novoFilme.idGenero()));
-        
+        Set<Produtora> produtoras = novoFilme.idsProdutoras().stream().map(
+            p -> new Produtora(produtoraService.getOne(p))).collect(Collectors.toSet());
+
         Filme filme = new Filme();
         filme.setTitulo(novoFilme.titulo());
         filme.setGenero(genero);
+        filme.setProdutoras(produtoras);
 
         return new FilmeDTO(filmeRepo.save(filme));
     }
@@ -45,6 +55,8 @@ public class FilmeService {
 
     public FilmeDTO update(long id, FilmeInsertDTO novosDados) {
         Optional<Filme> resultado = filmeRepo.findById(id);
+        Set<Produtora> produtoras = novosDados.idsProdutoras().stream().map(
+            p -> new Produtora(produtoraService.getOne(p))).collect(Collectors.toSet());
 
         if(resultado.isEmpty()) {
             throw new ResponseStatusException(
@@ -56,6 +68,7 @@ public class FilmeService {
 
         resultado.get().setTitulo(novosDados.titulo());
         resultado.get().setGenero(genero);
+        resultado.get().setProdutoras(produtoras);
 
         return new FilmeDTO(filmeRepo.save(resultado.get()));
     }

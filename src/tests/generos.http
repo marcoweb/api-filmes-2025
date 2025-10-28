@@ -1,6 +1,8 @@
 @url = http://localhost:8080
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGaWxtZXMgQVBJIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3NjEwOTE5OTR9.h9FAEIof4JcyYOUO96qnfzvPIpaEHBSZ-xvxqf314Do
 
 GET {{url}}/generos
+Authorization:  Bearer {{token}}
 
 ###
 POST {{url}}/generos

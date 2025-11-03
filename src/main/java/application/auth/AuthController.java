@@ -21,7 +21,7 @@ public class AuthController {
     public String login(@RequestBody Usuario usuario) {
         UsernamePasswordAuthenticationToken tk =
             new UsernamePasswordAuthenticationToken(
-                usuario.getNomeDeUsuario(), usuario.getNomeDeUsuario());
+                usuario.getNomeDeUsuario(), usuario.getSenha());
         authenticationManager.authenticate(tk);
         
         return tokenService.generateToken(usuario);
